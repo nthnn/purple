@@ -15,7 +15,7 @@ jobs:
 
       - name: Build Example
         run: |
-          chmod +x $(./examples/**/*.sh)
+          chmod +x $(ls ./examples/**/*.sh)
           find ./examples -type f -name "*.sh" -print0 | xargs -0 -I {} bash "{}"
           ls -ral bin
 
