@@ -10,8 +10,6 @@ Moreover, Aetherium is built with the following principles in mind:
 - **🤝 Developer Friendly** — Clear APIs, comprehensive documentation (forthcoming), and a focus on ease of use.
 - **⚡ Performance** — Optimized for speed and resource efficiency, crucial for full-time running systems. A Linux-Native Framework for Scalable Systems
 
-Hence, Aetherium aims to a comprehensive library designed to empower developers in building robust, scalable, and high-performance systems that fully leverage the capabilities of the Linux operating system. Inspired by modern design principles and focusing on efficiency, Aetherium provides a rich set of tools and components to streamline the development of complex, concurrent, and distributed applications.
-
 > [! NOTE]
 > Aetherium is still underdevelopment. Do not use in production environment.
 
