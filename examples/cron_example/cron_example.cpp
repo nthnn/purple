@@ -119,7 +119,8 @@ int main() {
     std::cout << "\nScheduler will continue running."
         << std::endl;
 
-    while(true)
-        std::this_thread::sleep_for(CronSeconds(10));
+    for(int i = 0; i < 5; i++)
+        std::this_thread::sleep_for(CronSeconds(5));
+
     return 0;
 }
