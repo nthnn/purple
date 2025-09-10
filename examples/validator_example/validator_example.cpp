@@ -1,9 +1,9 @@
-#include <aetherium/helper/validator.hpp>
+#include <netlet/helper/validator.hpp>
 
 #include <iostream>
 
 int main() {
-  using namespace Aetherium::Helper;
+  using namespace Netlet::Helper;
 
   std::cout << "Email Validation:" << std::endl;
   std::cout << "test@example.com: "

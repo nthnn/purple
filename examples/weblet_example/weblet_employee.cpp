@@ -1,7 +1,7 @@
-#include <aetherium/net/weblet.hpp>
+#include <netlet/net/weblet.hpp>
 #include <iostream>
 
-using namespace Aetherium::Net;
+using namespace Netlet::Net;
 
 WebletDynamicHandler
 employee_fetch(Request request, std::map<std::string, std::string> parameters) {

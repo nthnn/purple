@@ -1,10 +1,10 @@
-#include <aetherium/concurrent/channel.hpp>
-#include <aetherium/concurrent/tasklet.hpp>
+#include <netlet/concurrent/channel.hpp>
+#include <netlet/concurrent/tasklet.hpp>
 
 #include <iostream>
 
 int main() {
-  using namespace Aetherium::Concurrent;
+  using namespace Netlet::Concurrent;
 
   std::cout << "-- C++ Tasklet and Channel Imitation --" << std::endl;
 

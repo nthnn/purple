@@ -1,7 +1,7 @@
-#include <aetherium/helper/url.hpp>
+#include <netlet/helper/url.hpp>
 #include <iostream>
 
-using namespace Aetherium::Helper;
+using namespace Netlet::Helper;
 
 void printComponents(UrlParser parser) {
   std::cout << "Original URL: " << parser.get_original_url() << std::endl;

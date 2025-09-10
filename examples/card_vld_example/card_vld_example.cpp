@@ -1,11 +1,11 @@
-#include <aetherium/helper/card.hpp>
+#include <netlet/helper/card.hpp>
 
 #include <chrono>
 #include <iostream>
 #include <vector>
 
 int main() {
-  using namespace Aetherium::Helper;
+  using namespace Netlet::Helper;
 
   std::vector<std::string> test_cards = {
       "4000 1234 5678 9010", // Valid Visa

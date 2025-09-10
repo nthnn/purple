@@ -1,10 +1,10 @@
-#include <aetherium/format/dotenv.hpp>
+#include <netlet/format/dotenv.hpp>
 
 #include <fstream>
 #include <iostream>
 
 int main() {
-  using namespace Aetherium::Format;
+  using namespace Netlet::Format;
 
   std::ofstream test_env_file(".env");
   if (test_env_file.is_open()) {

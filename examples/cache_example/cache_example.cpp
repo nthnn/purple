@@ -1,7 +1,7 @@
-#include <aetherium/memcache/cache.hpp>
+#include <netlet/memcache/cache.hpp>
 #include <iostream>
 
-using namespace Aetherium::MemoryCache;
+using namespace Netlet::MemoryCache;
 
 void print_cache_stats(CacheStats stats) {
   std::cout << "--- Cache Statistics ---" << std::endl;

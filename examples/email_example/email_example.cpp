@@ -1,7 +1,7 @@
-#include <aetherium/helper/email.hpp>
+#include <netlet/helper/email.hpp>
 #include <iostream>
 
-using namespace Aetherium::Helper;
+using namespace Netlet::Helper;
 
 void print_email_addr(EmailAddress address) {
   std::cout << "  Full String: " << address.to_string() << std::endl;

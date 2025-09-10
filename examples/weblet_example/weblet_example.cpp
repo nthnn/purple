@@ -1,14 +1,14 @@
-#include <aetherium/concurrent/tasklet.hpp>
-#include <aetherium/cron/timepoint.hpp>
-#include <aetherium/net/weblet.hpp>
+#include <netlet/concurrent/tasklet.hpp>
+#include <netlet/cron/timepoint.hpp>
+#include <netlet/net/weblet.hpp>
 
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <thread>
 
-using namespace Aetherium::Concurrent;
-using namespace Aetherium::Net;
+using namespace Netlet::Concurrent;
+using namespace Netlet::Net;
 
 Response handshake(Request request,
                    std::map<std::string, std::string> parameters) {
@@ -301,7 +301,7 @@ int main() {
   std::cout << "Server is up!" << std::endl;
   server.start();
 
-  std::this_thread::sleep_for(Aetherium::Cron::CronSeconds(30));
+  std::this_thread::sleep_for(Netlet::Cron::CronSeconds(30));
 
   server.stop();
   delete_public_files();

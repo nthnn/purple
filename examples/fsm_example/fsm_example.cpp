@@ -1,7 +1,7 @@
-#include <aetherium/state/callbacks.hpp>
-#include <aetherium/state/event.hpp>
-#include <aetherium/state/exceptions.hpp>
-#include <aetherium/state/state.hpp>
+#include <netlet/state/callbacks.hpp>
+#include <netlet/state/event.hpp>
+#include <netlet/state/exceptions.hpp>
+#include <netlet/state/state.hpp>
 
 #include <chrono>
 #include <iostream>
@@ -24,7 +24,7 @@ struct DoorContext {
 };
 
 int main() {
-  using namespace Aetherium::State;
+  using namespace Netlet::State;
   using DoorStateMachine = StateMachine<DoorState, DoorEvent>;
 
   DoorStateMachine door_state_mach("Smart Door FSM");

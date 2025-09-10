@@ -1,8 +1,8 @@
-#include <aetherium/format/robots_txt.hpp>
+#include <netlet/format/robots_txt.hpp>
 #include <iostream>
 
 int main() {
-  using namespace Aetherium::Format;
+  using namespace Netlet::Format;
 
   std::string robots_txt_content_1 = R"(
 # This is a comment

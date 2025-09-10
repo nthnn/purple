@@ -1,9 +1,9 @@
-#include <aetherium/format/json.hpp>
+#include <netlet/format/json.hpp>
 
 #include <iostream>
 
 int main() {
-  using namespace Aetherium::Format;
+  using namespace Netlet::Format;
 
   std::string json_str =
       "{\"name\": \"Alice\", \"age\": 30, \"isStudent\": false, "

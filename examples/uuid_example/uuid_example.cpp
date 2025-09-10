@@ -1,8 +1,8 @@
-#include <aetherium/helper/uuid.hpp>
+#include <netlet/helper/uuid.hpp>
 #include <iostream>
 
 int main() {
-  using namespace Aetherium::Helper;
+  using namespace Netlet::Helper;
 
   UUIDGenerator generator;
   std::cout << "Generating 5 UUIDs (Version 4):" << std::endl;
