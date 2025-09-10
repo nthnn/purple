@@ -16,6 +16,14 @@
  * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
  */
 
+/**
+ * @file mime.hpp
+ * @author Nathanne Isip <nathanneisip@gmail.com>
+ * @brief Provides MIME type handling and mapping utilities.
+ *
+ * This file declares the Mime class, which maps file extensions to MIME
+ * types and allows lookup of content types based on resource names.
+ */
 #ifndef NETLET_NET_MIME_HPP
 #define NETLET_NET_MIME_HPP
 
@@ -23,6 +31,11 @@
 
 namespace Netlet::Net {
 
+/*
+ * The Mime class provides lookup facilities to translate file extensions
+ * (e.g., ".html") into standard MIME types (e.g., "text/html"). It is used
+ * to ensure correct Content-Type headers in web responses.
+ */
 std::string get_mime_type(const std::string &filename);
 
 }
