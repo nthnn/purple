@@ -1,27 +1,27 @@
 /*
  * Copyright (c) 2025 - Nathanne Isip
- * This file is part of Aetherium.
+ * This file is part of Netlet.
  *
- * Aetherium is free software: you can redistribute it and/or modify
+ * Netlet is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
  *
- * Aetherium is distributed in the hope that it will be useful, but
+ * Netlet is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Aetherium. If not, see <https://www.gnu.org/licenses/>.
+ * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <aetherium/net/mime.hpp>
+#include <netlet/net/mime.hpp>
 
 #include <algorithm>
 #include <map>
 
-namespace Aetherium::Net {
+namespace Netlet::Net {
 
 std::string get_mime_type(const std::string &filename) {
   static const std::map<std::string, std::string> mimeTypes = {
@@ -501,4 +501,4 @@ std::string get_mime_type(const std::string &filename) {
   return "application/octet-stream";
 }
 
-} // namespace Aetherium::Net
+} // namespace Netlet::Net

@@ -1,24 +1,24 @@
 /*
  * Copyright (c) 2025 - Nathanne Isip
- * This file is part of Aetherium.
+ * This file is part of Netlet.
  *
- * Aetherium is free software: you can redistribute it and/or modify
+ * Netlet is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
  *
- * Aetherium is distributed in the hope that it will be useful, but
+ * Netlet is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Aetherium. If not, see <https://www.gnu.org/licenses/>.
+ * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <aetherium/helper/validator.hpp>
+#include <netlet/helper/validator.hpp>
 
-namespace Aetherium::Helper {
+namespace Netlet::Helper {
 
 bool InputValidator::regex_match(const std::string &s, const std::regex &r) {
   return std::regex_match(s, r);
@@ -251,4 +251,4 @@ bool InputValidator::is_valid_path(const std::string &path) {
   return InputValidator::regex_match(path, path_regex);
 }
 
-} // namespace Aetherium::Helper
+} // namespace Netlet::Helper

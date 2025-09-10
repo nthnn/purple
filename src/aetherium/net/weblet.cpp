@@ -1,24 +1,24 @@
 /*
  * Copyright (c) 2025 - Nathanne Isip
- * This file is part of Aetherium.
+ * This file is part of Netlet.
  *
- * Aetherium is free software: you can redistribute it and/or modify
+ * Netlet is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
  *
- * Aetherium is distributed in the hope that it will be useful, but
+ * Netlet is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Aetherium. If not, see <https://www.gnu.org/licenses/>.
+ * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <aetherium/concurrent/tasklet.hpp>
-#include <aetherium/net/mime.hpp>
-#include <aetherium/net/weblet.hpp>
+#include <netlet/concurrent/tasklet.hpp>
+#include <netlet/net/mime.hpp>
+#include <netlet/net/weblet.hpp>
 
 #include <cerrno>
 #include <cstring>
@@ -31,7 +31,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-namespace Aetherium::Net {
+namespace Netlet::Net {
 
 void Response::set_header(const std::string &key, const std::string &value) {
   this->headers[key] = value;
@@ -151,7 +151,7 @@ RequestHandler Weblet::load_response(int shared_mods,
 }
 
 void Weblet::start() {
-  Aetherium::Concurrent::go<std::function<void()>>(
+  Netlet::Concurrent::go<std::function<void()>>(
       &this->tasklet_manager, [this] {
         server_desc = socket(AF_INET, SOCK_STREAM, 0);
         if (server_desc == -1)
@@ -638,7 +638,7 @@ void Weblet::handle_client(int client_socket_fd) {
 }
 
 Response Weblet::route_request(const Request &request) {
-  for (const Aetherium::Net::Route &route : this->routes) {
+  for (const Netlet::Net::Route &route : this->routes) {
     std::smatch match;
 
     if (std::regex_match(request.request_path, match, route.path_regex)) {
@@ -749,4 +749,4 @@ Response Weblet::handle_error(int error_code, const std::string &message) {
 
 bool Weblet::is_spa() const { return this->spa; }
 
-} // namespace Aetherium::Net
+} // namespace Netlet::Net

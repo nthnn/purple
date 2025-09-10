@@ -1,27 +1,27 @@
 /*
  * Copyright (c) 2025 - Nathanne Isip
- * This file is part of Aetherium.
+ * This file is part of Netlet.
  *
- * Aetherium is free software: you can redistribute it and/or modify
+ * Netlet is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
  *
- * Aetherium is distributed in the hope that it will be useful, but
+ * Netlet is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Aetherium. If not, see <https://www.gnu.org/licenses/>.
+ * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <aetherium/format/dotenv.hpp>
+#include <netlet/format/dotenv.hpp>
 
 #include <fstream>
 #include <iostream>
 
-namespace Aetherium::Format {
+namespace Netlet::Format {
 
 std::string DotEnv::trim(const std::string &str) {
   size_t first = str.find_first_not_of(" \t\n\r\f\v");
@@ -134,4 +134,4 @@ bool DotEnv::has(const std::string &key) const {
   return env_vars.count(key) > 0;
 }
 
-} // namespace Aetherium::Format
+} // namespace Netlet::Format
