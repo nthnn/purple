@@ -1,28 +1,28 @@
 /*
  * Copyright (c) 2025 - Nathanne Isip
- * This file is part of Aetherium.
+ * This file is part of Netlet.
  *
- * Aetherium is free software: you can redistribute it and/or modify
+ * Netlet is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
  *
- * Aetherium is distributed in the hope that it will be useful, but
+ * Netlet is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Aetherium. If not, see <https://www.gnu.org/licenses/>.
+ * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef AETHERIUM_HELPER_VALIDATOR_HPP
-#define AETHERIUM_HELPER_VALIDATOR_HPP
+#ifndef NETLET_HELPER_VALIDATOR_HPP
+#define NETLET_HELPER_VALIDATOR_HPP
 
 #include <regex>
 #include <string>
 
-namespace Aetherium::Helper {
+namespace Netlet::Helper {
 
 typedef enum {
   PASSWORD_NONE = 0,
@@ -85,6 +85,6 @@ public:
   static bool is_valid_path(const std::string &path);
 };
 
-} // namespace Aetherium::Helper
+} // namespace Netlet::Helper
 
 #endif

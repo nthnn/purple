@@ -1,26 +1,26 @@
 /*
  * Copyright (c) 2025 - Nathanne Isip
- * This file is part of Aetherium.
+ * This file is part of Netlet.
  *
- * Aetherium is free software: you can redistribute it and/or modify
+ * Netlet is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
  *
- * Aetherium is distributed in the hope that it will be useful, but
+ * Netlet is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Aetherium. If not, see <https://www.gnu.org/licenses/>.
+ * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef AETHERIUM_STATE_HPP
-#define AETHERIUM_STATE_HPP
+#ifndef NETLET_STATE_HPP
+#define NETLET_STATE_HPP
 
-#include <aetherium/state/callbacks.hpp>
-#include <aetherium/state/transition.hpp>
+#include <netlet/state/callbacks.hpp>
+#include <netlet/state/transition.hpp>
 
 #include <map>
 #include <memory>
@@ -28,7 +28,7 @@
 #include <string>
 #include <vector>
 
-namespace Aetherium::State {
+namespace Netlet::State {
 
 template <typename StateEnum> class State {
 private:
@@ -324,6 +324,6 @@ public:
   }
 };
 
-} // namespace Aetherium::State
+} // namespace Netlet::State
 
 #endif

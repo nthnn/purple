@@ -1,23 +1,23 @@
 /*
  * Copyright (c) 2025 - Nathanne Isip
- * This file is part of Aetherium.
+ * This file is part of Netlet.
  *
- * Aetherium is free software: you can redistribute it and/or modify
+ * Netlet is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
  *
- * Aetherium is distributed in the hope that it will be useful, but
+ * Netlet is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Aetherium. If not, see <https://www.gnu.org/licenses/>.
+ * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef AETHERIUM_SYS_CACHE_HPP
-#define AETHERIUM_SYS_CACHE_HPP
+#ifndef NETLET_SYS_CACHE_HPP
+#define NETLET_SYS_CACHE_HPP
 
 #include <algorithm>
 #include <atomic>
@@ -35,9 +35,9 @@
 #include <type_traits>
 #include <vector>
 
-#include <aetherium/sys/time.hpp>
+#include <netlet/sys/time.hpp>
 
-namespace Aetherium::MemoryCache {
+namespace Netlet::MemoryCache {
 
 #define CACHE_MAX_SIZE_BYTES 1024 * 1024 * 10
 #define CACHE_MAX_ITEMS 1000
@@ -92,11 +92,11 @@ template <typename T> struct CacheItem {
 
   CacheItem(const T &val, long long expiry_ms, size_t s_bytes,
             int p = CACHE_DEFAULT_PRIORITY)
-      : value(val), timestamp(Aetherium::Sys::timestamp_ms()), ttl(expiry_ms),
+      : value(val), timestamp(Netlet::Sys::timestamp_ms()), ttl(expiry_ms),
         size_bytes(s_bytes), priority(p) {}
 
   bool is_expired() const {
-    return (Aetherium::Sys::timestamp_ms() - timestamp) > ttl;
+    return (Netlet::Sys::timestamp_ms() - timestamp) > ttl;
   }
 };
 
@@ -284,7 +284,7 @@ public:
         lru_list.splice(lru_list.begin(), lru_list, it->second);
 
         value = it->second->second.value;
-        it->second->second.timestamp = Aetherium::Sys::timestamp_ms();
+        it->second->second.timestamp = Netlet::Sys::timestamp_ms();
 
         stats.hits++;
         return true;
@@ -402,6 +402,6 @@ std::map<std::string, std::shared_ptr<ICache<Key, Value>>>
 template <typename Key, typename Value>
 std::mutex CacheManager<Key, Value>::manager_mutex;
 
-} // namespace Aetherium::MemoryCache
+} // namespace Netlet::MemoryCache
 
 #endif

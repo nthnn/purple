@@ -1,31 +1,31 @@
 /*
  * Copyright (c) 2025 - Nathanne Isip
- * This file is part of Aetherium.
+ * This file is part of Netlet.
  *
- * Aetherium is free software: you can redistribute it and/or modify
+ * Netlet is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
  *
- * Aetherium is distributed in the hope that it will be useful, but
+ * Netlet is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Aetherium. If not, see <https://www.gnu.org/licenses/>.
+ * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef AETHERIUM_STATE_TRANSITION_HPP
-#define AETHERIUM_STATE_TRANSITION_HPP
+#ifndef NETLET_STATE_TRANSITION_HPP
+#define NETLET_STATE_TRANSITION_HPP
 
-#include <aetherium/state/callbacks.hpp>
-#include <aetherium/state/event.hpp>
-#include <aetherium/state/state.hpp>
+#include <netlet/state/callbacks.hpp>
+#include <netlet/state/event.hpp>
+#include <netlet/state/state.hpp>
 
 #include <memory>
 
-namespace Aetherium::State {
+namespace Netlet::State {
 
 template <typename StateEnum, typename EventEnum> class Transition {
 private:
@@ -81,6 +81,6 @@ public:
   }
 };
 
-} // namespace Aetherium::State
+} // namespace Netlet::State
 
 #endif
