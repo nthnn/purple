@@ -1,21 +1,21 @@
-# 🧪 Netlet
+# 🧪 Purple
 
-Netlet is a comprehensive library designed to empower developers in building robust, scalable, and high-performance systems that fully leverage the capabilities of the Linux operating system. Inspired by modern design principles and focusing on efficiency, Netlet provides a rich set of tools and components to streamline the development of complex, concurrent, and distributed applications.
+Purple is a comprehensive library designed to empower developers in building robust, scalable, and high-performance systems that fully leverage the capabilities of the Linux operating system. Inspired by modern design principles and focusing on efficiency, Purple provides a rich set of tools and components to streamline the development of complex, concurrent, and distributed applications.
 
-Moreover, Netlet is built with the following principles in mind:
+Moreover, Purple is built with the following principles in mind:
 
 - **🐧 Linux Native** — Designed to maximize performance and leverage unique Linux system calls and features.
 - **📈 Scalability** — Components are built to handle high concurrency and large data volumes, making it suitable for demanding applications.
-- **🧩 Modularity** — Netlet's features are designed as independent modules, allowing developers to pick and choose the components they need without unnecessary bloat.
+- **🧩 Modularity** — Purple's features are designed as independent modules, allowing developers to pick and choose the components they need without unnecessary bloat.
 - **🤝 Developer Friendly** — Clear APIs, comprehensive documentation (forthcoming), and a focus on ease of use.
 - **⚡ Performance** — Optimized for speed and resource efficiency, crucial for full-time running systems. A Linux-Native Framework for Scalable Systems
 
 > [!NOTE]
-> Netlet is still underdevelopment. Do not use in production environment.
+> Purple is still underdevelopment. Do not use in production environment.
 
 ## 🛠️ Features
 
-Netlet offers a wide array of features, meticulously crafted to address common challenges in system development:
+Purple offers a wide array of features, meticulously crafted to address common challenges in system development:
 
 - **🔄 Concurrency Management**
     - **Channels**
@@ -41,7 +41,7 @@ Netlet offers a wide array of features, meticulously crafted to address common c
     - **URL Parser, Builder, and Generator**
         Comprehensive utilities for handling URLs, including parsing components, building new URLs, and generating valid URL strings.
     - **Weblet (Web Server)**
-    A lightweight and efficient web server component, providing the foundation for building web services and APIs directly within your Netlet application.
+    A lightweight and efficient web server component, providing the foundation for building web services and APIs directly within your Purple application.
 
 - **✅ Data Validation and Generation**
     - **Credit/Debit Card Validator**
