@@ -1,23 +1,23 @@
 /*
  * Copyright (c) 2025 - Nathanne Isip
- * This file is part of Netlet.
+ * This file is part of Purple.
  *
- * Netlet is free software: you can redistribute it and/or modify
+ * Purple is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
  *
- * Netlet is distributed in the hope that it will be useful, but
+ * Purple is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
+ * along with Purple. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef NETLET_FORMAT_JSON_HPP
-#define NETLET_FORMAT_JOSN_HPP
+#ifndef PURPLE_FORMAT_JSON_HPP
+#define PURPLE_FORMAT_JOSN_HPP
 
 #include <map>
 #include <stdexcept>
@@ -26,7 +26,7 @@
 #include <variant>
 #include <vector>
 
-namespace Netlet::Format {
+namespace Purple::Format {
 
 class JsonValue;
 
@@ -139,6 +139,6 @@ public:
   JsonParser() : json_str(""), pos(0) {}
 };
 
-} // namespace Netlet::Format
+} // namespace Purple::Format
 
 #endif

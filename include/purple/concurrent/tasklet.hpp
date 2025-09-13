@@ -1,19 +1,19 @@
 /*
  * Copyright (c) 2025 - Nathanne Isip
- * This file is part of Netlet.
+ * This file is part of Purple.
  *
- * Netlet is free software: you can redistribute it and/or modify
+ * Purple is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
  *
- * Netlet is distributed in the hope that it will be useful, but
+ * Purple is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
+ * along with Purple. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
@@ -25,8 +25,8 @@
  * worker thread management, and panic handling. It enables parallel execution
  * of lightweight tasks using a thread pool managed by `TaskletManager`.
  */
-#ifndef NETLET_CONCURRENT_TASKLET_HPP
-#define NETLET_CONCURRENT_TASKLET_HPP
+#ifndef PURPLE_CONCURRENT_TASKLET_HPP
+#define PURPLE_CONCURRENT_TASKLET_HPP
 
 #include <atomic>
 #include <condition_variable>
@@ -37,7 +37,7 @@
 #include <string>
 #include <thread>
 
-namespace Netlet::Concurrent {
+namespace Purple::Concurrent {
 
 /**
  * @class TaskletPanicException
@@ -58,8 +58,9 @@ public:
 /**
  * @brief Triggers a panic in the tasklet system.
  *
- * This helper function throws a `TaskletPanicException` with the provided message.
- * It is used internally when the tasklet runtime encounters unrecoverable errors.
+ * This helper function throws a `TaskletPanicException` with the provided
+ * message. It is used internally when the tasklet runtime encounters
+ * unrecoverable errors.
  *
  * @param message Descriptive error message for the panic.
  * @throws TaskletPanicException Always thrown when invoked.
@@ -70,32 +71,37 @@ void tasklet_panic(const std::string &message);
  * @class TaskletManager
  * @brief Manages task execution and worker threads for the tasklet runtime.
  *
- * The `TaskletManager` maintains a pool of worker threads that execute lightweight
- * tasks (`std::function<void()>`) submitted to the system. It supports both task
- * scheduling and synchronization for task completion.
+ * The `TaskletManager` maintains a pool of worker threads that execute
+ * lightweight tasks (`std::function<void()>`) submitted to the system. It
+ * supports both task scheduling and synchronization for task completion.
  *
  * - Tasks are scheduled via the `go()` method.
  * - Worker threads continuously pull tasks from the queue.
- * - `wait_for_completion()` blocks until all pending tasks have finished execution.
+ * - `wait_for_completion()` blocks until all pending tasks have finished
+ * execution.
  *
- * The manager can be cleanly destroyed, ensuring that all worker threads are joined.
+ * The manager can be cleanly destroyed, ensuring that all worker threads are
+ * joined.
  */
 class TaskletManager {
 private:
-  std::mutex queue_mutex;                         ///< Mutex protecting the task queue.
-  std::condition_variable condition;              ///< Condition variable for task availability.
+  std::mutex queue_mutex; ///< Mutex protecting the task queue.
+  std::condition_variable
+      condition; ///< Condition variable for task availability.
 
-  std::vector<std::thread> workers;               ///< Pool of worker threads.
-  std::queue<std::function<void()>> tasks;        ///< Queue of scheduled tasks.
+  std::vector<std::thread> workers;        ///< Pool of worker threads.
+  std::queue<std::function<void()>> tasks; ///< Queue of scheduled tasks.
 
-  std::atomic<int> active_tasks_count;            ///< Counter of currently running tasks.
-  std::condition_variable tasks_completion_cv;    ///< Condition variable for task completion.
+  std::atomic<int> active_tasks_count; ///< Counter of currently running tasks.
+  std::condition_variable
+      tasks_completion_cv; ///< Condition variable for task completion.
 
-  bool stop_threads;                              ///< Flag to signal worker shutdown.
+  bool stop_threads; ///< Flag to signal worker shutdown.
 
 public:
   /**
-   * @brief Constructs a new tasklet manager with a given number of worker threads.
+   * @brief Constructs a new tasklet manager with a given number of worker
+   * threads.
    * @param num_threads Number of threads to spawn in the pool.
    */
   TaskletManager(size_t num_threads);
@@ -150,6 +156,6 @@ void go(TaskletManager *manager, T func) {
     tasklet_panic("TaskletManager not initialized");
 }
 
-} // namespace Netlet::Concurrent
+} // namespace Purple::Concurrent
 
 #endif
