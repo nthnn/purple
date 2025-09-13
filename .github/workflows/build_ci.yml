@@ -15,7 +15,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          apt install -y clang-format build-essential
+          sudo apt install -y clang-format build-essential
 
       - name: Format Source Files
         run: find . -regex '.*\.\(cpp\|hpp\|cc\|cxx\|c\|h\)' -exec clang-format -style=file -i {} \;
