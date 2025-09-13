@@ -1,8 +1,8 @@
-#include <netlet/format/robots_txt.hpp>
 #include <iostream>
+#include <purple/format/robots_txt.hpp>
 
 int main() {
-  using namespace Netlet::Format;
+  using namespace Purple::Format;
 
   std::string robots_txt_content_1 = R"(
 # This is a comment

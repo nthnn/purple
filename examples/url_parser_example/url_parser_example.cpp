@@ -1,7 +1,7 @@
-#include <netlet/helper/url.hpp>
 #include <iostream>
+#include <purple/helper/url.hpp>
 
-using namespace Netlet::Helper;
+using namespace Purple::Helper;
 
 void printComponents(UrlParser parser) {
   std::cout << "Original URL: " << parser.get_original_url() << std::endl;

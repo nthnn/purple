@@ -1,10 +1,10 @@
-#include <netlet/concurrent/channel.hpp>
-#include <netlet/concurrent/tasklet.hpp>
+#include <purple/concurrent/channel.hpp>
+#include <purple/concurrent/tasklet.hpp>
 
 #include <iostream>
 
 int main() {
-  using namespace Netlet::Concurrent;
+  using namespace Purple::Concurrent;
 
   std::cout << "-- C++ Tasklet and Channel Imitation --" << std::endl;
 

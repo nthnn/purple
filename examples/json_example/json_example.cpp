@@ -1,9 +1,9 @@
-#include <netlet/format/json.hpp>
+#include <purple/format/json.hpp>
 
 #include <iostream>
 
 int main() {
-  using namespace Netlet::Format;
+  using namespace Purple::Format;
 
   std::string json_str =
       "{\"name\": \"Alice\", \"age\": 30, \"isStudent\": false, "

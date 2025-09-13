@@ -1,8 +1,8 @@
-#include <netlet/cron/job.hpp>
-#include <netlet/cron/schedule.hpp>
 #include <iostream>
+#include <purple/cron/job.hpp>
+#include <purple/cron/schedule.hpp>
 
-using namespace Netlet::Cron;
+using namespace Purple::Cron;
 
 void task_1() {
   std::cout << timepoint_string(now())

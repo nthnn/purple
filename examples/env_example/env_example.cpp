@@ -1,10 +1,10 @@
-#include <netlet/format/dotenv.hpp>
+#include <purple/format/dotenv.hpp>
 
 #include <fstream>
 #include <iostream>
 
 int main() {
-  using namespace Netlet::Format;
+  using namespace Purple::Format;
 
   std::ofstream test_env_file(".env");
   if (test_env_file.is_open()) {

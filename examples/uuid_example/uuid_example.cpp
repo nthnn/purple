@@ -1,8 +1,8 @@
-#include <netlet/helper/uuid.hpp>
 #include <iostream>
+#include <purple/helper/uuid.hpp>
 
 int main() {
-  using namespace Netlet::Helper;
+  using namespace Purple::Helper;
 
   UUIDGenerator generator;
   std::cout << "Generating 5 UUIDs (Version 4):" << std::endl;

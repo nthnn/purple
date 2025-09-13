@@ -1,7 +1,7 @@
-#include <netlet/helper/email.hpp>
 #include <iostream>
+#include <purple/helper/email.hpp>
 
-using namespace Netlet::Helper;
+using namespace Purple::Helper;
 
 void print_email_addr(EmailAddress address) {
   std::cout << "  Full String: " << address.to_string() << std::endl;

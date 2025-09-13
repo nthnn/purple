@@ -1,10 +1,13 @@
-#include <netlet/net/weblet.hpp>
 #include <iostream>
+#include <purple/format/dotenv.hpp>
+#include <purple/net/weblet.hpp>
 
-using namespace Netlet::Net;
+using namespace Purple::Format;
+using namespace Purple::Net;
 
 WebletDynamicHandler
-employee_fetch(Request request, std::map<std::string, std::string> parameters) {
+employee_fetch(DotEnv config, Request request,
+               std::map<std::string, std::string> parameters) {
   Response response;
   response.set_header("Content-Type", "application/json");
 

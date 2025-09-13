@@ -1,16 +1,18 @@
-#include <netlet/concurrent/tasklet.hpp>
-#include <netlet/cron/timepoint.hpp>
-#include <netlet/net/weblet.hpp>
+#include <purple/concurrent/tasklet.hpp>
+#include <purple/cron/timepoint.hpp>
+#include <purple/format/dotenv.hpp>
+#include <purple/net/weblet.hpp>
 
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <thread>
 
-using namespace Netlet::Concurrent;
-using namespace Netlet::Net;
+using namespace Purple::Concurrent;
+using namespace Purple::Format;
+using namespace Purple::Net;
 
-Response handshake(Request request,
+Response handshake(DotEnv env, Request request,
                    std::map<std::string, std::string> parameters) {
   Response response;
   response.set_header("Content-Type", "application/json");
@@ -34,7 +36,7 @@ Response handshake(Request request,
   return response;
 }
 
-Response fetch_employee(Request request,
+Response fetch_employee(DotEnv env, Request request,
                         std::map<std::string, std::string> parameters) {
   Response response;
   response.set_header("Content-Type", "application/json");
@@ -59,7 +61,7 @@ Response fetch_employee(Request request,
   return response;
 }
 
-Response upload_file_handler(Request request,
+Response upload_file_handler(DotEnv env, Request request,
                              std::map<std::string, std::string> parameters) {
   Response response;
   response.set_header("Content-Type", "application/json");
@@ -301,7 +303,7 @@ int main() {
   std::cout << "Server is up!" << std::endl;
   server.start();
 
-  std::this_thread::sleep_for(Netlet::Cron::CronSeconds(30));
+  std::this_thread::sleep_for(Purple::Cron::CronSeconds(30));
 
   server.stop();
   delete_public_files();

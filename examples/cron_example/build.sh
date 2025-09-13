@@ -1,2 +1,2 @@
 mkdir -p bin
-g++ -Wall -Weffc++ -std=c++20 -Iinclude -fcoroutines -pthread -o bin/cron_example examples/cron_example/cron_example.cpp src/netlet/concurrent/* src/netlet/cron/*
+g++ -Wall -Weffc++ -std=c++20 -Iinclude -fcoroutines -pthread -o bin/cron_example examples/cron_example/cron_example.cpp src/purple/concurrent/* src/purple/cron/*

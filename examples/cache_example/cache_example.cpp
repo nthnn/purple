@@ -1,7 +1,7 @@
-#include <netlet/memcache/cache.hpp>
 #include <iostream>
+#include <purple/memcache/cache.hpp>
 
-using namespace Netlet::MemoryCache;
+using namespace Purple::MemoryCache;
 
 void print_cache_stats(CacheStats stats) {
   std::cout << "--- Cache Statistics ---" << std::endl;

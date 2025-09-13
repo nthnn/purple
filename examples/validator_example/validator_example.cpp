@@ -1,9 +1,9 @@
-#include <netlet/helper/validator.hpp>
+#include <purple/helper/validator.hpp>
 
 #include <iostream>
 
 int main() {
-  using namespace Netlet::Helper;
+  using namespace Purple::Helper;
 
   std::cout << "Email Validation:" << std::endl;
   std::cout << "test@example.com: "

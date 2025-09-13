@@ -1,7 +1,7 @@
-#include <netlet/state/callbacks.hpp>
-#include <netlet/state/event.hpp>
-#include <netlet/state/exceptions.hpp>
-#include <netlet/state/state.hpp>
+#include <purple/state/callbacks.hpp>
+#include <purple/state/event.hpp>
+#include <purple/state/exceptions.hpp>
+#include <purple/state/state.hpp>
 
 #include <chrono>
 #include <iostream>
@@ -24,7 +24,7 @@ struct DoorContext {
 };
 
 int main() {
-  using namespace Netlet::State;
+  using namespace Purple::State;
   using DoorStateMachine = StateMachine<DoorState, DoorEvent>;
 
   DoorStateMachine door_state_mach("Smart Door FSM");
