@@ -13,6 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install Dependencies
+        run: |
+          apt install -y clang-format build-essential
+
+      - name: Format Source Files
+        run: find . -regex '.*\.\(cpp\|hpp\|cc\|cxx\|c\|h\)' -exec clang-format -style=file -i {} \;
+
       - name: Build Example
         run: |
           chmod +x $(ls ./examples/**/*.sh)
