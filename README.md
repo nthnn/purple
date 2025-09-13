@@ -48,7 +48,7 @@ using namespace std;
 Response hello(DotEnv env, Request request,
                    std::map<std::string, std::string> parameters) {
   Response response;
-  response.set_header("Content-Type", "application/json");
+  response.set_header("Content-Type", "text/plain");
   response.contents = "Hello, world!";
 
   return response;
