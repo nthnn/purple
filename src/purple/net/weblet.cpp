@@ -1,24 +1,24 @@
 /*
  * Copyright (c) 2025 - Nathanne Isip
- * This file is part of Netlet.
+ * This file is part of Purple.
  *
- * Netlet is free software: you can redistribute it and/or modify
+ * Purple is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
  *
- * Netlet is distributed in the hope that it will be useful, but
+ * Purple is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
+ * along with Purple. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <netlet/concurrent/tasklet.hpp>
-#include <netlet/net/mime.hpp>
-#include <netlet/net/weblet.hpp>
+#include <purple/concurrent/tasklet.hpp>
+#include <purple/net/mime.hpp>
+#include <purple/net/weblet.hpp>
 
 #include <cerrno>
 #include <cstring>
@@ -31,7 +31,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-namespace Netlet::Net {
+namespace Purple::Net {
 
 void Response::set_header(const std::string &key, const std::string &value) {
   this->headers[key] = value;
@@ -115,7 +115,8 @@ RequestHandler Weblet::load_response(int shared_mods,
                             std::to_string(shared_mods) +
                             " not found or invalid");
 
-    return [](Request, std::map<std::string, std::string>) -> Response {
+    return [](Purple::Format::DotEnv, Request,
+              std::map<std::string, std::string>) -> Response {
       Response res;
       res.status_code = 500;
       res.status_message = "Internal Server Error";
@@ -126,7 +127,7 @@ RequestHandler Weblet::load_response(int shared_mods,
   }
 
   void *handle = this->loaded_mods[shared_mods];
-  typedef Response (*DynamicHandlerPtr)(Request,
+  typedef Response (*DynamicHandlerPtr)(Purple::Format::DotEnv, Request,
                                         std::map<std::string, std::string>);
 
   DynamicHandlerPtr func_ptr =
@@ -137,7 +138,8 @@ RequestHandler Weblet::load_response(int shared_mods,
                             "' in module ID " + std::to_string(shared_mods) +
                             ": " + std::string(dlerror()));
 
-    return [](Request, std::map<std::string, std::string>) -> Response {
+    return [](Purple::Format::DotEnv, Request,
+              std::map<std::string, std::string>) -> Response {
       Response res;
       res.status_code = 500;
       res.status_message = "Internal Server Error";
@@ -151,64 +153,62 @@ RequestHandler Weblet::load_response(int shared_mods,
 }
 
 void Weblet::start() {
-  Netlet::Concurrent::go<std::function<void()>>(
-      &this->tasklet_manager, [this] {
-        server_desc = socket(AF_INET, SOCK_STREAM, 0);
-        if (server_desc == -1)
-          throw WebletException("Socket failed");
+  Purple::Concurrent::go<std::function<void()>>(&this->tasklet_manager, [this] {
+    server_desc = socket(AF_INET, SOCK_STREAM, 0);
+    if (server_desc == -1)
+      throw WebletException("Socket failed");
 
-        int opt = 1;
-        if (setsockopt(this->server_desc, SOL_SOCKET,
-                       SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) {
-          close(this->server_desc);
-          throw WebletException("Socket control behavior error");
-        }
+    int opt = 1;
+    if (setsockopt(this->server_desc, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT,
+                   &opt, sizeof(opt))) {
+      close(this->server_desc);
+      throw WebletException("Socket control behavior error");
+    }
 
-        sockaddr_in address;
-        address.sin_family = AF_INET;
-        address.sin_addr.s_addr =
-            (this->hostname == "localhost" || this->hostname == "127.0.0.1")
-                ? INADDR_ANY
-                : inet_addr(this->hostname.c_str());
-        address.sin_port = htons(this->port);
+    sockaddr_in address;
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr =
+        (this->hostname == "localhost" || this->hostname == "127.0.0.1")
+            ? INADDR_ANY
+            : inet_addr(this->hostname.c_str());
+    address.sin_port = htons(this->port);
 
-        if (bind(this->server_desc, (struct sockaddr *)&address,
-                 sizeof(address)) < 0) {
-          close(this->server_desc);
-          throw WebletException("Socket binding failed");
-        }
+    if (bind(this->server_desc, (struct sockaddr *)&address, sizeof(address)) <
+        0) {
+      close(this->server_desc);
+      throw WebletException("Socket binding failed");
+    }
 
-        if (listen(this->server_desc, 10) < 0) {
-          close(this->server_desc);
-          throw WebletException("Socket listening failed");
-        }
+    if (listen(this->server_desc, 10) < 0) {
+      close(this->server_desc);
+      throw WebletException("Socket listening failed");
+    }
 
-        while (true) {
-          sockaddr_in client_address;
-          socklen_t client_addr_len = sizeof(client_address);
+    while (true) {
+      sockaddr_in client_address;
+      socklen_t client_addr_len = sizeof(client_address);
 
-          int accepted_fd =
-              accept(server_desc, (struct sockaddr *)&client_address,
-                     &client_addr_len);
+      int accepted_fd = accept(server_desc, (struct sockaddr *)&client_address,
+                               &client_addr_len);
 
-          if (accepted_fd < 0) {
-            if (errno == EBADF || errno == EINVAL)
-              break;
+      if (accepted_fd < 0) {
+        if (errno == EBADF || errno == EINVAL)
+          break;
 
-            this->handler_exception("Failed to accept socket: " +
-                                    std::string(strerror(errno)));
-            continue;
-          }
+        this->handler_exception("Failed to accept socket: " +
+                                std::string(strerror(errno)));
+        continue;
+      }
 
-          SocketCloser client_socket(accepted_fd);
-          this->handle_client(static_cast<int>(client_socket));
-        }
+      SocketCloser client_socket(accepted_fd);
+      this->handle_client(static_cast<int>(client_socket));
+    }
 
-        if (this->server_desc != -1) {
-          close(this->server_desc);
-          this->server_desc = -1;
-        }
-      });
+    if (this->server_desc != -1) {
+      close(this->server_desc);
+      this->server_desc = -1;
+    }
+  });
 }
 
 void Weblet::stop() {
@@ -638,7 +638,7 @@ void Weblet::handle_client(int client_socket_fd) {
 }
 
 Response Weblet::route_request(const Request &request) {
-  for (const Netlet::Net::Route &route : this->routes) {
+  for (const Purple::Net::Route &route : this->routes) {
     std::smatch match;
 
     if (std::regex_match(request.request_path, match, route.path_regex)) {
@@ -653,7 +653,7 @@ Response Weblet::route_request(const Request &request) {
         }
       }
 
-      return route.handler(request, parameters);
+      return route.handler(this->configuration, request, parameters);
     }
   }
 
@@ -749,4 +749,12 @@ Response Weblet::handle_error(int error_code, const std::string &message) {
 
 bool Weblet::is_spa() const { return this->spa; }
 
-} // namespace Netlet::Net
+void Weblet::set_config(Purple::Format::DotEnv config) {
+  this->configuration = config;
+}
+
+Purple::Format::DotEnv Weblet::get_config() const {
+  return this->configuration;
+}
+
+} // namespace Purple::Net

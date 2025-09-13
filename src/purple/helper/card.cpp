@@ -1,28 +1,28 @@
 /*
  * Copyright (c) 2025 - Nathanne Isip
- * This file is part of Netlet.
+ * This file is part of Purple.
  *
- * Netlet is free software: you can redistribute it and/or modify
+ * Purple is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
  *
- * Netlet is distributed in the hope that it will be useful, but
+ * Purple is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Netlet. If not, see <https://www.gnu.org/licenses/>.
+ * along with Purple. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <netlet/helper/card.hpp>
+#include <purple/helper/card.hpp>
 
 #include <algorithm>
 #include <chrono>
 #include <stdexcept>
 
-namespace Netlet::Helper {
+namespace Purple::Helper {
 
 const std::vector<CardValidator::CardRule> CardValidator::cardRules = {
     CardValidator::CardRule(CardProvider::VISA, {"4"}, {13, 16, 19}, 3),
@@ -328,4 +328,4 @@ bool CardValidator::parse_expiry_date(const std::string &mm_yy_format,
   return false;
 }
 
-} // namespace Netlet::Helper
+} // namespace Purple::Helper
