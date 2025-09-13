@@ -1,4 +1,7 @@
-# 🧪 Purple
+<p align="center">
+    <img src="assets/purple-logo.png" width="120" />
+</p>
+<h1 align="center">Purple Framework</h1>
 
 Purple is a comprehensive library designed to empower developers in building robust, scalable, and high-performance systems that fully leverage the capabilities of the Linux operating system. Inspired by modern design principles and focusing on efficiency, Purple provides a rich set of tools and components to streamline the development of complex, concurrent, and distributed applications.
 
@@ -18,51 +21,52 @@ Moreover, Purple is built with the following principles in mind:
 Purple offers a wide array of features, meticulously crafted to address common challenges in system development:
 
 - **🔄 Concurrency Management**
-    - **Channels**
-        Facilitate safe and efficient communication between concurrent processes, inspired by CSP (Communicating Sequential Processes) and similar to Golang's channels.
-    - **Tasklets**
-        Lightweight, user-space execution units akin to Golang's goroutines, enabling highly concurrent operations with minimal overhead.
-
 - **⏰ Cron (Job Scheduling)**
-    - **Scheduler**
-        A powerful and flexible job scheduler for executing tasks at specified intervals or times.
-    - **Timepoint Management**
-        Define precise execution times and recurring schedules for automated processes.
-
 - **⚙️ Environment and Configuration**
-    - **Dot File Environment I/O**
-        Seamlessly read and write configuration from and to dot files, a common Linux convention.
-    - **JSON Handling**
-        Robust parsing, building, and manipulation of JSON data for configuration, API communication, and data storage.
-
 - **🌐 Web and Networking Utilities**
-    - **Robots.txt I/O and Generation**
-        Easily manage and generate robots.txt files for web crawler control.
-    - **URL Parser, Builder, and Generator**
-        Comprehensive utilities for handling URLs, including parsing components, building new URLs, and generating valid URL strings.
-    - **Weblet (Web Server)**
-    A lightweight and efficient web server component, providing the foundation for building web services and APIs directly within your Purple application.
-
 - **✅ Data Validation and Generation**
-    - **Credit/Debit Card Validator**
-        Functions for validating credit and debit card numbers (e.g., Luhn algorithm checks).
-    - **Email Message and Address Builder and Generator**
-        Tools for constructing and validating email addresses and full email messages.
-    - **UUID String Generator**
-        Generate universally unique identifiers for various purposes.
-    - **Validator Functions**
-        A collection of general-purpose validation functions for common data types.
-
 - **🔧 System Utilities**
-    - **Cache Management System**
-        Efficiently manage in-memory caches to improve application performance.
-    - **MIME Type Detection Function**
-        Accurately detect MIME types of files based on their content or extension.
-    - **Timestamps**
-        Utilities for precise timestamp generation and manipulation.
 
-- **🚦 Finite State Machine (FSM) Management**
-    - **Transitions**
-        Define and manage state transitions within your application logic.
-    - **Callbacks**
-        Associate custom functions with state entries, exits, and transitions, enabling powerful event-driven architectures.
+## 🌐 Example Webserver
+
+This program demonstrates how to use the Purple framework to create a lightweight HTTP server (`Weblet`) with environment configuration support (`DotEnv`), request/response handling, and lifecycle management (start, run, stop).
+
+It defines a handshake handler function, configures the server, attaches a route, starts serving requests, keeps the server alive for a period of time, and then stops gracefully.
+
+```cpp
+#include <iostream>
+
+#include <purple/cron/schedule.hpp>
+#include <purple/format/dotenv.hpp>
+#include <purple/net/weblet.hpp>
+
+using namespace Purple::Cron;
+using namespace Purple::Format;
+using namespace Purple::Net;
+using namespace std;
+
+Response hello(DotEnv env, Request request,
+                   std::map<std::string, std::string> parameters) {
+  Response response;
+  response.set_header("Content-Type", "application/json");
+  response.contents = "Hello, world!";
+
+  return response;
+}
+
+int main() {
+  Weblet server("0.0.0.0", 8080, false, 4, [](std::string message) {
+    std::cout << "Error: " << message << std::endl;
+  });
+
+  server.handle("/", hello);
+  std::cout << "Server is up!" << std::endl;
+  server.start();
+
+  std::this_thread::sleep_for(Purple::Cron::CronSeconds(30));
+
+  server.stop();
+  return 0;
+}
+
+```
