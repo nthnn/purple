@@ -43,19 +43,18 @@ It defines a handshake handler function, configures the server, attaches a route
 using namespace Purple::Cron;
 using namespace Purple::Format;
 using namespace Purple::Net;
-using namespace std;
 
 Response hello(DotEnv env, Request request,
-                   std::map<std::string, std::string> parameters) {
+               std::map<std::string, std::string> parameters) {
   Response response;
-  response.set_header("Content-Type", "text/plain");
+  response.set_header("Content-Type", "application/json");
   response.contents = "Hello, world!";
 
   return response;
 }
 
 int main() {
-  Weblet server("0.0.0.0", 8080, false, 4, [](std::string message) {
+  Weblet server("localhost", 8080, false, 4, [](std::string message) {
     std::cout << "Error: " << message << std::endl;
   });
 
@@ -63,10 +62,6 @@ int main() {
   std::cout << "Server is up!" << std::endl;
   server.start();
 
-  std::this_thread::sleep_for(Purple::Cron::CronSeconds(30));
-
-  server.stop();
   return 0;
 }
-
 ```
